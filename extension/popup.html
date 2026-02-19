@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>PreencheJá</title>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Automação Pró</h1>
+      <button class="settings-btn" title="Configurações">⚙️</button>
+    </header>
+
+    <section class="upload-section">
+      <label for="excel-file">Excel (opcional)</label>
+      <div class="drop-zone">
+        <span class="drop-icon">☁️</span>
+        <p>Arraste ou clique para selecionar</p>
+        <input type="file" id="excel-file" hidden accept=".xlsx,.xls">
+      </div>
+    </section>
+
+    <section class="controls-section">
+      <h3>Controles de Gravação</h3>
+      <div class="button-row">
+        <button id="start-btn" class="btn btn-primary">
+          <span>▶</span> Iniciar Gravação
+        </button>
+        <button id="stop-btn" class="btn btn-secondary">
+          <span>■</span> Parar Gravação
+        </button>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 45%;"></div>
+      </div>
+    </section>
+
+    <section class="library-section">
+      <div class="library-header">
+        <h3>Biblioteca</h3>
+        <select id="automation-select">
+          <option>Selecionar automação...</option>
+        </select>
+      </div>
+      <div class="automation-list">
+        <!-- Automations serão populadas via JS -->
+      </div>
+    </section>
+
+    <button id="delete-main-btn" class="btn btn-danger">
+      <span>🗑️</span> Deletar Automação
+    </button>
+
+    <footer>
+      <span class="status-dot"></span>
+      <span id="status-text">Status: Pronto</span>
+    </footer>
+  </div>
+
+  <!-- Bibliotecas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

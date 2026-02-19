@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "PreencheJá",
+  "version": "1.0",
+  "description": "Automação simples",
+  "permissions": ["storage", "activeTab"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"]
+  }]
+}
