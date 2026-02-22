@@ -1,14 +1,21 @@
 {
   "manifest_version": 3,
-  "name": "PreencheJá",
+  "name": "PreencheJa",
   "version": "1.0",
-  "description": "Automação simples",
-  "permissions": ["storage", "activeTab"],
+  "description": "Automacao simples",
+  "permissions": ["storage", "activeTab", "sidePanel"],
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
-    "default_popup": "popup.html"
+    "default_title": "PreencheJa"
+  },
+  "side_panel": {
+    "default_path": "popup.html"
   },
   "content_scripts": [{
     "matches": ["<all_urls>"],
+    "all_frames": true,
     "js": ["content.js"]
   }]
 }

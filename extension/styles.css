@@ -67,6 +67,11 @@ header {
 
 .drop-icon { font-size: 1.5rem; display: block; margin-bottom: 4px; }
 .drop-zone p { font-size: 0.75rem; margin: 0; color: var(--secondary); }
+.hint {
+  margin: 6px 0 0;
+  font-size: 0.7rem;
+  color: var(--secondary);
+}
 
 /* Buttons */
 .button-row { display: flex; gap: 8px; margin-bottom: 12px; }
@@ -85,6 +90,11 @@ header {
   transition: all 0.2s;
   font-size: 0.85rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#run-btn {
+  width: 100%;
+  margin-bottom: 12px;
 }
 
 .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }

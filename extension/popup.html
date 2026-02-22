@@ -4,34 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <title>PreencheJá</title>
+  <title>PreencheJa</title>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>Automação Pró</h1>
-      <button class="settings-btn" title="Configurações">⚙️</button>
+      <h1>Automacao Pro</h1>
+      <button class="settings-btn" title="Configuracoes">CFG</button>
     </header>
 
     <section class="upload-section">
       <label for="excel-file">Excel (opcional)</label>
       <div class="drop-zone">
-        <span class="drop-icon">☁️</span>
+        <span class="drop-icon">UP</span>
         <p>Arraste ou clique para selecionar</p>
         <input type="file" id="excel-file" hidden accept=".xlsx,.xls">
       </div>
+      <p id="excel-status" class="hint">Nenhum arquivo carregado</p>
     </section>
 
     <section class="controls-section">
-      <h3>Controles de Gravação</h3>
+      <h3>Controles de Gravacao</h3>
       <div class="button-row">
         <button id="start-btn" class="btn btn-primary">
-          <span>▶</span> Iniciar Gravação
+          <span>></span> Iniciar Gravacao
         </button>
         <button id="stop-btn" class="btn btn-secondary">
-          <span>■</span> Parar Gravação
+          <span>[]</span> Parar Gravacao
         </button>
       </div>
+      <button id="run-btn" class="btn btn-primary">
+        <span>></span> Rodar Automacao
+      </button>
       <div class="progress-bar">
         <div class="progress-fill" style="width: 45%;"></div>
       </div>
@@ -41,16 +45,16 @@
       <div class="library-header">
         <h3>Biblioteca</h3>
         <select id="automation-select">
-          <option>Selecionar automação...</option>
+          <option>Selecionar automacao...</option>
         </select>
       </div>
       <div class="automation-list">
-        <!-- Automations serão populadas via JS -->
+        <!-- Automations serao populadas via JS -->
       </div>
     </section>
 
     <button id="delete-main-btn" class="btn btn-danger">
-      <span>🗑️</span> Deletar Automação
+      <span>Deletar Automacao</span> 
     </button>
 
     <footer>
@@ -59,8 +63,7 @@
     </footer>
   </div>
 
-  <!-- Bibliotecas -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="vendor/xlsx.full.min.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>
