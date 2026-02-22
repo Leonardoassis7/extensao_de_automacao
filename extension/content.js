@@ -84,44 +84,63 @@ document.addEventListener("click", (e) => {
   if (!recording) return;
   if (e.target.closest("#automacao-bar")) return;
 
-  const target = getTargetElement(e.target);
-  if (!target) return;
+  const clickTarget = e.target instanceof Element ? e.target : null;
+  const inputTarget = getInputElement(e.target) || getInputElement(document.activeElement);
 
-  const selectorInfo = getBestSelector(target);
-  const baseAction = {
-    selector: selectorInfo.selector,
-    selectorType: selectorInfo.selectorType,
-    xpath: selectorInfo.xpath,
-    delay: 500
-  };
-
-  if (e.shiftKey) {
-    const value = getElementValue(target);
-    actions.push({
-      ...baseAction,
-      type: "input",
-      value,
-      inputIndex: inputIndex++
-    });
-    showFeedback(target, "Preencher OK", "#10b981");
+  if (e.shiftKey && inputTarget) {
+    recordInputAction(inputTarget);
   }
 
-  if (e.ctrlKey) {
-    actions.push({
-      ...baseAction,
-      type: "click",
-      delay: 800
-    });
-    showFeedback(target, "Clicar OK", "#3b82f6");
+  if (e.ctrlKey && clickTarget) {
+    recordClickAction(clickTarget);
   }
 }, true);
 
-function getTargetElement(el) {
-  if (!el) return null;
-  if (el.closest("input,select,textarea,button,a,[contenteditable='true']")) {
-    return el.closest("input,select,textarea,button,a,[contenteditable='true']");
-  }
-  return null;
+let shiftLatch = false;
+document.addEventListener("keydown", (e) => {
+  if (!recording) return;
+  if (e.key !== "Shift" || e.repeat || shiftLatch) return;
+  const inputTarget = getInputElement(document.activeElement);
+  if (!inputTarget) return;
+  shiftLatch = true;
+  recordInputAction(inputTarget);
+}, true);
+
+document.addEventListener("keyup", (e) => {
+  if (e.key === "Shift") shiftLatch = false;
+}, true);
+
+function recordInputAction(target) {
+  const selectorInfo = getBestSelector(target);
+  const value = getElementValue(target);
+  actions.push({
+    selector: selectorInfo.selector,
+    selectorType: selectorInfo.selectorType,
+    xpath: selectorInfo.xpath,
+    delay: 500,
+    type: "input",
+    value,
+    inputIndex: inputIndex++
+  });
+  showFeedback(target, "Preencher OK", "#10b981");
+}
+
+function recordClickAction(target) {
+  const selectorInfo = getBestSelector(target);
+  actions.push({
+    selector: selectorInfo.selector,
+    selectorType: selectorInfo.selectorType,
+    xpath: selectorInfo.xpath,
+    delay: 800,
+    type: "click"
+  });
+  showFeedback(target, "Clicar OK", "#3b82f6");
+}
+
+function getInputElement(el) {
+  if (!el || !(el instanceof Element)) return null;
+  const candidate = el.closest("input,select,textarea,[contenteditable='true'],[role='textbox']");
+  return candidate || null;
 }
 
 function getElementValue(el) {
