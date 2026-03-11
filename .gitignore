@@ -1,0 +1,30 @@
+# Biblioteca xlsx (baixar via: curl -sL https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js -o extension/vendor/xlsx.full.min.js)
+extension/vendor/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Env
+.env
+.env.*

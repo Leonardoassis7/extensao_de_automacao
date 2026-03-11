@@ -3,7 +3,7 @@
   "name": "PreencheJa",
   "version": "1.0",
   "description": "Automacao simples",
-  "permissions": ["storage", "activeTab", "sidePanel"],
+  "permissions": ["storage", "activeTab", "sidePanel", "tabs"],
   "background": {
     "service_worker": "background.js"
   },

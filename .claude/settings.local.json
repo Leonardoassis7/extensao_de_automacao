@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sL \"https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js\" -o \"c:/Users/Fernando/Desktop/Pastas/Estudos/projetos/python/extensao_de_automacao/extension/vendor/xlsx.full.min.js\")"
+    ]
+  }
+}

@@ -71,7 +71,7 @@ function deleteAutomationByIndex(index) {
 }
 
 document.getElementById("start-btn").onclick = () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+  chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
     const tabId = tabs[0]?.id;
     if (!tabId) return;
     recordingTabId = tabId;
@@ -142,7 +142,7 @@ document.getElementById("run-btn").onclick = () => {
       return;
     }
 
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
       const tabId = tabs[0]?.id;
       if (!tabId) return;
 
@@ -197,6 +197,11 @@ excelInput.addEventListener("change", (e) => {
 });
 
 function handleExcelFile(file) {
+  if (typeof XLSX === "undefined") {
+    setStatus("Erro: biblioteca XLSX nao carregada", "#ef4444");
+    excelStatus.textContent = "Erro: coloque xlsx.full.min.js em extension/vendor/";
+    return;
+  }
   const reader = new FileReader();
   reader.onload = (evt) => {
     const data = new Uint8Array(evt.target.result);
