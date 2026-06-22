@@ -297,11 +297,16 @@ function sleep(ms) {
 }
 
 function showFeedback(el, text, color) {
+  const rect = el.getBoundingClientRect();
   const feedback = document.createElement("div");
   feedback.textContent = text;
 
+  // Use position:fixed anchored to the element's bounding box so the tooltip
+  // works on void elements (input, select, textarea) that cannot have children.
   feedback.style.cssText = `
-    position: absolute;
+    position: fixed;
+    left: ${rect.left + rect.width / 2}px;
+    top: ${rect.top}px;
     background: ${color};
     color: white;
     padding: 4px 10px;
@@ -314,11 +319,7 @@ function showFeedback(el, text, color) {
     white-space: nowrap;
   `;
 
-  const prevPosition = el.style.position;
-  if (!prevPosition || prevPosition === "static") {
-    el.style.position = "relative";
-  }
-  el.appendChild(feedback);
+  document.body.appendChild(feedback);
 
   setTimeout(() => {
     feedback.style.transition = "all 0.3s";
